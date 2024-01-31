@@ -1,0 +1,2 @@
+class AirticleGenresController < ApplicationController
+end

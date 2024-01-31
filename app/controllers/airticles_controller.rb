@@ -1,0 +1,2 @@
+class AirticlesController < ApplicationController
+end

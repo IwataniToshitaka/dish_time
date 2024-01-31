@@ -30,6 +30,7 @@
 
 ## 設計書
 <!--テーマを設定・提出する時点では不要です-->
+https://docs.google.com/spreadsheets/d/1xqIycr3zTXQye_3VUm43ckzxFiKNHfkr1zeRup9sVJ0/edit#gid=1898975908
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -40,5 +41,3 @@
 ​
 ## 使用素材
 仕様検討中です
-
-https://docs.google.com/spreadsheets/d/1xqIycr3zTXQye_3VUm43ckzxFiKNHfkr1zeRup9sVJ0/edit#gid=1898975908
