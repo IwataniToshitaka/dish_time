@@ -6,69 +6,60 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     <script src="https://kit.fontawesome.com/xxxxxxxxxx.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png') %></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
+
+<body ap-style="">
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <%= link_to "/", class: "navbar-brand" do %>
+      <li style="display: flex; justify-content: center; align-items: center;">
+        <span>Dish_Time</span>
+      </li>
+      <% end %>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto" style="justify-content: space-between;">
+          <div style="display: flex; justify-content: center; align-items: center;">
             <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '投稿フォーム', new_post_image_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
-            </li>
+              <li style="margin-right: 10px; list-style-type: none;"><i class="fa-solid fa-users"></i>About</li>
+              <li style="margin-right: 10px; list-style-type: none;"><i class="fa-solid fa-book-open"></i></li>
+              <li style="margin-right: 10px; list-style-type: none;"><i class="fa-solid fa-sign-out-alt"></i>Log out</li>
             <% else %>
-            <li class="nav-item">
-              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
-            </li>
+              <li style="margin-right: 10px; list-style-type: none;"><i class="fa-solid fa-link"></i>About</li>
+              <li style="margin-right: 10px; list-style-type: none;"><i class="fa-solid fa-user-plus"></i>Sign up</li>
+              <li style="margin-right: 10px; list-style-type: none;"><i class="fa-solid fa-sign-in-alt"></i>Log in</li>
             <% end %>
-            </ul>
           </div>
-        </div>
-      </nav>
-    </header>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+  <div style="border-bottom: 1px solid black;"></div>
+
+
     <main class="mb-auto">
     <%= yield %>
     </main>
-    <footer class="bg-dark text-white pt-5 pb-4">
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <p>善良な市民同士で無差別に食欲を煽るSNS</p>
-            <%= image_tag('logo-white.png') %>
-          </div>
-          <div class="col-md-8">
-            <h6 class="text-white mt-2 mb-3">Link</h6>
-            <ul class="p-0 list-unstyled">
-              <li>
-                <a href="" title="About" class="text-white-50">会社概要</a>
-              </li>
-              <li>
-                <a href="" title="License informations" class="text-white-50">プライバシーポリシー</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+
+
+<footer class="bg-dark text-white pt-5 pb-4 d-flex flex-column justify-content-center align-items-center" style="position: fixed; left: 0; bottom: 0; width: 100%;">
+  <div style="border-bottom: 1px solid black; width: 50%; margin: 0 auto;"></div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+       <ul>
+        <li style="margin-right: 10px; list-style-type: none;">善良な市民同士で無差別に食欲を煽るSNS</li>
+        <li style="margin-right: 10px; list-style-type: none;">Link</li>
+        <li style="margin-right: 10px; list-style-type: none;">会社概要</li>
+        <li style="margin-right: 10px; list-style-type: none;">プライバシーポリシー</li>
+       <ul>
+    </div>
+</footer>
+
+
   </body>
 </html>
