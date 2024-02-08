@@ -1,0 +1,7 @@
+<% @airticles.each do |airticle| %>
+  <div>
+    <%= image_tag airticle.get_image %>
+    <p>投稿画像：<%= image_tag 'no_image.jpg' %></p>
+    <p>説明：<%= airticle.airticle %></p>
+  </div>
+<% end %>

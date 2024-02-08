@@ -17,21 +17,31 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <%= link_to "/", class: "navbar-brand" do %>
-      <li style="display: flex; justify-content: center; align-items: center;">
-        <span>Dish_Time</span>
-      </li>
+        <li style="display: flex; justify-content: center; align-items: center;">
+          <span>Dish_Time</span><i class="fa-solid fa-utensils"></i>
+        </li>
       <% end %>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto" style="justify-content: space-between;">
           <div style="display: flex; justify-content: center; align-items: center;">
+
             <% if user_signed_in? %>
-              <li style="margin-right: 10px; list-style-type: none;"><i class="fa-solid fa-users"></i>About</li>
-              <li style="margin-right: 10px; list-style-type: none;"><i class="fa-solid fa-book-open"></i></li>
-              <li style="margin-right: 10px; list-style-type: none;"><i class="fa-solid fa-sign-out-alt"></i>Log out</li>
+              <li style="margin-right: 10px; list-style-type: none;">
+                <i class="fa-solid fa-users"></i>
+                　<%= link_to "テスト用の投稿", new_airticle_path %></li>
+              <li style="margin-right: 10px; list-style-type: none;">
+                <i class="fa-solid fa-book-open"></i>detail</li>
+              <li style="margin-right: 10px; list-style-type: none;">
+                <i class="fa-solid fa-sign-out-alt">
+                  <%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+
             <% else %>
-              <li style="margin-right: 10px; list-style-type: none;"><i class="fa-solid fa-link"></i>About</li>
-              <li style="margin-right: 10px; list-style-type: none;"><i class="fa-solid fa-user-plus"></i>Sign up</li>
-              <li style="margin-right: 10px; list-style-type: none;"><i class="fa-solid fa-sign-in-alt"></i>Log in</li>
+              <li style="margin-right: 10px; list-style-type: none;">
+                <i class="fa-solid fa-link"></i>About</li>
+              <li style="margin-right: 10px; list-style-type: none;">
+                <i class="fa-solid fa-user-plus"></i><%= link_to "Sign up", new_user_registration_path %></li>
+              <li style="margin-right: 10px; list-style-type: none;">
+                <i class="fa-solid fa-sign-in-alt"></i><%= link_to "Log in", user_registration_path %></li>
             <% end %>
           </div>
         </ul>
