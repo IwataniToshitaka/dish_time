@@ -1,8 +1,19 @@
 <h3>投稿フォーム</h3>
-<%= form_with model: @airticle do |f| %>
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  <h4>本文</h4>
-  <%= f.text_area :airticle %>
+<%= form_with model: @airticle, local: true do |f| %>
+  <div>
+    <%= f.label :image, "画像" %>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+
+<div>
+  <%= f.label :title, "料理名" %>
+  <%= f.text_area :title %>
+</div>
+
+<div>
+  <%= f.label :body, "説明" %>
+  <%= f.text_area :body %>
+</div>
+
   <%= f.submit '投稿する' %>
 <% end %>

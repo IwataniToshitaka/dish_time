@@ -1,7 +1,15 @@
-<% @airticles.each do |airticle| %>
-  <div>
-    <%= image_tag airticle.get_image %>
-    <p>投稿画像：<%= image_tag 'no_image.jpg' %></p>
-    <p>説明：<%= airticle.airticle %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <% @airticles.each do |airticle| %>
+        <div class="airticle-item">
+          <%= link_to airticle_path(airticle.id) do %>
+            <%= image_tag airticle.get_image, size: "200x200" %>
+          <% end %>
+          <p>料理名：<%= airticle.title %></p>
+          <!-- 投稿詳細へのリンクなど、必要な表示を追加する -->
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
