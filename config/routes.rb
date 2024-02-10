@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   #home/aboutのURLに飛んだ時、homesコントローラのindexアクションを実行
 
   resources :users, only: [:new, :create, :show, :index, :edit]
-  resources :airticles, only: [:new, :create, :index, :show, :destroy]
+  resources :airticles, only: [:new, :create, :index, :show, :update, :edit, :destroy]
   resources :airticle_genres, only: [:new, :create, :index, :show]
   resources :genres, only: [:index]
   resources :comments, only: [:new, :edit, :show]

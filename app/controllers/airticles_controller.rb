@@ -1,5 +1,5 @@
 class AirticlesController < ApplicationController
-before_action :is_matching_login_user, only: [:edit, :update]
+before_action :is_matching_login_user, only: [:update]
 
   def new
     @airticle = Airticle.new
@@ -25,6 +25,9 @@ before_action :is_matching_login_user, only: [:edit, :update]
       #つまり、この投稿のユーザIDに現在ログインしているユーザIDを格納する処理
   end
 
+  def edit
+    @airticle = Airticle.find(params[:id])
+  end
 
   def index
     @airticles = Airticle.all
@@ -43,6 +46,12 @@ before_action :is_matching_login_user, only: [:edit, :update]
     @airticle = Airticle.find(params[:id])
     @airticle.destroy
     redirect_to airticles_path
+  end
+
+  def update
+    airticle = Airticle.find(params[:id])
+    airticle.update(airticle_params)
+    redirect_to airticle_path(airticle.id)
   end
 
 
