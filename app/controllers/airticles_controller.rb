@@ -1,5 +1,5 @@
 class AirticlesController < ApplicationController
-#before_action :is_matching_login_user
+#before_action :is_matching_login_user, only: :index
 
   def new
     @airticle = Airticle.new
@@ -18,7 +18,7 @@ class AirticlesController < ApplicationController
       #(.id)をつけることで投稿した内容を保持する
       else
       flash[:notice] = "Validation error: Please check the input."
-      render :index #このアクション内に定義要
+      render :new #このアクション内に定義要
       end
       #投稿したユーザを識別するID
       #投稿のユーザIDが現在ログインしているユーザID

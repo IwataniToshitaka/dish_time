@@ -1,15 +1,19 @@
 <div class="container d-flex justify-content-center">
-  <div class="row">
-    <div class="col-md-3">
-      <% @airticles.each do |airticle| %>
-        <div class="airticle-item">
-          <%= link_to airticle_path(airticle.id) do %>
-            <%= image_tag airticle.get_image, size: "200x200" %>
-          <% end %>
-          <p>料理名：<%= airticle.title %></p>
-          <p>投稿者：<%= airticle.user_id %></p>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <table class="table">
+    <tbody>
+      <tr>
+        <% @airticles.each do |airticle| %>
+          <td>
+            <div class="airticle-item text-center">
+                <%= image_tag airticle.get_image, size: "150x150" %>
+                <%= link_to airticle_path(airticle.id), style: "color: black; text-decoration: none;" do %>
+                <p>料理名：<%= airticle.title %></p>
+              <% end %>
+              <p>ユーザID：<%= airticle.user_id %></p>
+            </div>
+          </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
 </div>

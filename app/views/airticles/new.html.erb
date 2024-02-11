@@ -1,19 +1,29 @@
 <h3>投稿フォーム</h3>
+
+<% if @airticle.errors.any? %>
+  <%= @airticle.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @airticle.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @airticle, local: true do |f| %>
   <div>
     <%= f.label :image, "画像" %>
     <%= f.file_field :image, accept: "image/*" %>
   </div>
 
-<div>
-  <%= f.label :title, "料理名" %>
-  <%= f.text_area :title %>
-</div>
+  <div>
+    <%= f.label :title, "料理名" %>
+    <%= f.text_area :title %>
+  </div>
 
-<div>
-  <%= f.label :body, "説明" %>
-  <%= f.text_area :body %>
-</div>
+  <div>
+    <%= f.label :body, "説明" %>
+    <%= f.text_area :body %>
+  </div>
 
-  <%= f.submit '投稿する' %>
+    <%= f.submit '投稿する' %>
 <% end %>

@@ -5,6 +5,12 @@ class Airticle < ApplicationRecord
   belongs_to :user
   #1:Nのuserとの関連付け
 
+  validates :title, presence: true
+  validates :body, presence: true
+  validates :image, presence: true
+  #バリデーションS
+  #タイトル、本文、画像が空欄の場合データ保存されない
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
