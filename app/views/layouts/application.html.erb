@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <script src="https://kit.fontawesome.com/xxxxxxxxxx.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/1084fc60d7.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -23,15 +23,16 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto" style="justify-content: space-between;">
           <div style="display: flex; justify-content: center; align-items: center;">
-            
+
             <!-- ヘッダーメニュー -->
             <% if user_signed_in? %>
               <li style="margin-right: 10px; list-style-type: none;">
-                <i class="fa-solid fa-users"></i>
-                <%= link_to "テスト用の投稿", new_airticle_path %>
+                <i class="fa-solid fa-book-open"></i>
+                <%= link_to "newpost", new_airticle_path %>
               </li>
               <li style="margin-right: 10px; list-style-type: none;">
-                <i class="fa-solid fa-book-open"></i>detail
+                <i class="fa-solid fa-home"></i>
+                <%= link_to "Mypage", user_path(current_user.id) %>
               </li>
               <li style="margin-right: 10px; list-style-type: none;">
                 <i class="fa-solid fa-sign-out-alt"></i>
@@ -54,7 +55,7 @@
                 <%= link_to "Log in", user_registration_path %>
               </li>
             <% end %>
-            
+
           </div>
         </ul>
       </div>
