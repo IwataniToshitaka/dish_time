@@ -1,5 +1,5 @@
 class AirticlesController < ApplicationController
-before_action :is_matching_login_user, only: [:update]
+#before_action :is_matching_login_user
 
   def new
     @airticle = Airticle.new
@@ -49,11 +49,15 @@ before_action :is_matching_login_user, only: [:update]
   end
 
   def update
-    airticle = Airticle.find(params[:id])
-    airticle.update(airticle_params)
-    redirect_to airticle_path(airticle.id)
+    @airticle = Airticle.find(params[:id])
+    if @airticle.update(airticle_params)
+    flash[:notice] = "You have updated book successfully." #updateアクションが成功したら遷移先画面でコメント表示
+    redirect_to airticles_path(@airticle.id)
+    else
+    flash[:notice] = "Validation error: Please check the input."
+    render 'edit'
+    end
   end
-
 
   private
 
