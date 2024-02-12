@@ -1,16 +1,32 @@
 <div class="container d-flex justify-content-center">
+  
+
   <div>
       <%= image_tag @airticle.image, size: "200x200" %>
+    <% if current_user.already_liked?(@airticle) %>
+      <%= link_to airticle_likes_path(@airticle),method: :delete do %>
+        <i class="fas fa-heart"></i>
+      <% end %>
+    <% else %>
+      <%= link_to airticle_likes_path(@airticle),method: :delete do %>
+        <i class="fas fa-heart"></i>
+      <% end %>
+    <% end %>
+    <%= @airticle.likes.count %>
+
         <span>料理名：<%= @airticle.title %></span>
+        
         <span>説明：<%= @airticle.body %></span>
-  
+
     <div>
       <% if current_user.id == @airticle.user_id %>
-        <span><%= link_to "delete", user_path, method: :delete, "data-confirm" => "本当に削除しますか？" %></span>
+        <span><%= link_to "delete", airticle_path(@airticle.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></span>
         <span>|</span>
         <span><%= link_to "edit", edit_airticle_path(@airticle.id) %></span>
       <% end %>
     </div>
+
+
 
     <p><%= image_tag @airticle.image, size: "100x100" %></p>
     <p>投稿者：<%= @airticle.user_id %></p>

@@ -1,5 +1,5 @@
 class AirticlesController < ApplicationController
-#before_action :is_matching_login_user, only: :index
+before_action :authenticate_user!
 
   def new
     @airticle = Airticle.new

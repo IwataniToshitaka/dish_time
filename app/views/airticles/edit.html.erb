@@ -1,3 +1,5 @@
+<%= render 'error', article: @article %>
+
 <div class="container d-flex justify-content-start" style="position: absolute; top: 80px; right: 250px;">
   <h3>
     <i class="fas fa-book-open"></i>編集
@@ -5,6 +7,5 @@
 </div>
 
 <div class="container d-flex justify-content-center mt-5">
-  <%= render 'error', article: @article %>
   <%= render 'form', article: @article %>
 </div>

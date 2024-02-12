@@ -4,7 +4,9 @@ class Airticle < ApplicationRecord
   #画像投稿
   belongs_to :user
   #1:Nのuserとの関連付け
-
+  has_many :likes, dependent: :destroy
+  #1投稿につきいいねは複数つく。
+  
   validates :title, presence: true
   validates :body, presence: true
   validates :image, presence: true
