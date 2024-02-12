@@ -1,18 +1,19 @@
 <div class="container d-flex justify-content-center">
   <div>
-    <%= image_tag @airticle.image, size: "300x300" %>
-    <p>料理名：<%= @airticle.title %></p>
-
-    <p>説明：<%= @airticle.body %></p>
+      <%= image_tag @airticle.image, size: "200x200" %>
+        <span>料理名：<%= @airticle.title %></span>
+        <span>説明：<%= @airticle.body %></span>
+  
+    <div>
+      <% if current_user.id == @airticle.user_id %>
+        <span><%= link_to "delete", user_path, method: :delete, "data-confirm" => "本当に削除しますか？" %></span>
+        <span>|</span>
+        <span><%= link_to "edit", edit_airticle_path(@airticle.id) %></span>
+      <% end %>
+    </div>
 
     <p><%= image_tag @airticle.image, size: "100x100" %></p>
     <p>投稿者：<%= @airticle.user_id %></p>
     <p>投稿日：<%= @airticle.created_at.strftime('%Y/%m/%d') %></p>
-    <% if current_user.id == @airticle.user_id %>
-    <p><%= link_to "delete", airticles_path(@airticle.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
-    <% end %>
-    <% if current_user.id == @airticle.user_id %>
-    <p><%= link_to "edit", edit_airticle_path(@airticle.id) %></p>
-    <% end %>
   </div>
 </div>

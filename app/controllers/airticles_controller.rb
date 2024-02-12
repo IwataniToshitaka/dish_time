@@ -13,20 +13,21 @@ class AirticlesController < ApplicationController
       #投稿内容が@airticleに格納
     @airticle.user_id = current_user.id
       if @airticle.save
-      flash[:notice] = "airticle created successfully."
-      redirect_to airticle_path(@airticle.id)
-      #(.id)をつけることで投稿した内容を保持する
+        redirect_to airticle_path(@airticle.id), notice:'airticle created successfully.'
+        #(.id)をつけることで投稿した内容を保持する
       else
-      flash[:notice] = "Validation error: Please check the input."
-      render :new #このアクション内に定義要
+        render :new #このアクション内に定義要
       end
-      #投稿したユーザを識別するID
-      #投稿のユーザIDが現在ログインしているユーザID
+        #投稿したユーザを識別するID
+        #投稿のユーザIDが現在ログインしているユーザID
       #つまり、この投稿のユーザIDに現在ログインしているユーザIDを格納する処理
   end
 
   def edit
     @airticle = Airticle.find(params[:id])
+    if @airticle.user != current_user
+      redirect_to airticles_path, alert: '不正なアクセスです。'
+    end
   end
 
   def index
@@ -43,19 +44,18 @@ class AirticlesController < ApplicationController
 
 
   def destroy
-    @airticle = Airticle.find(params[:id])
-    @airticle.destroy
+    airticle = Airticle.find(params[:id])
+    airticle.destroy
     redirect_to airticles_path
+    #viewに渡す必要がないのでローカル変数表記
   end
 
   def update
     @airticle = Airticle.find(params[:id])
     if @airticle.update(airticle_params)
-    flash[:notice] = "You have updated book successfully." #updateアクションが成功したら遷移先画面でコメント表示
-    redirect_to airticles_path(@airticle.id)
+      redirect_to airticles_path(@airticle), notice: 'You have updated book successfully.'
     else
-    flash[:notice] = "Validation error: Please check the input."
-    render 'edit'
+      render :edit
     end
   end
 

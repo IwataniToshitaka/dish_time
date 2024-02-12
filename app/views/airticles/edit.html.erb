@@ -1,12 +1,10 @@
-<h1>編集画面</h1>
-<%= form_with model: @airticle do |f| %>
+<div class="container d-flex justify-content-start" style="position: absolute; top: 80px; right: 250px;">
+  <h3>
+    <i class="fas fa-book-open"></i>編集
+  </h3>
+</div>
 
-  <h4>タイトル</h4>
-  <%= f.text_field :title, value: @airticle.title %>
-
-  <h4>本文</h4>
-  <%= f.text_area :body, value: @airticle.body %>
-
-  <%= f.submit '保存' %>
-
-<% end %>
+<div class="container d-flex justify-content-center mt-5">
+  <%= render 'error', article: @article %>
+  <%= render 'form', article: @article %>
+</div>

@@ -1,0 +1,21 @@
+<%= form_with model: @airticle do |f| %>
+
+      <div class="form-group">
+        <label><%= f.label :title, "料理名" %></label>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <label><%= f.label :body, "説明" %></label>
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <label><%= f.label :image, "画像" %></label>
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
+
+      <div>
+        <%= f.submit class: "btn btn-success" %></td>
+      <div>
+  <% end %>
