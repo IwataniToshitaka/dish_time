@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'about', to: 'homes#about'
   #home/aboutのURLに飛んだ時、homesコントローラのindexアクションを実行
 
-  resources :users, only: [:new, :create, :show, :index, :edit]
+  resources :users, only: [:new, :create, :show, :index, :edit, :update]
   resources :airticles, only: [:new, :create, :index, :show, :update, :edit, :destroy]do
     resource :likes, only: [:create, :destroy]
   end

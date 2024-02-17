@@ -6,12 +6,15 @@
         <table>
           <tbody>
             <tr>
+
+            </tr>
+            <tr>
               <th>name:</th>
-              <td><%= @user.id %></td>
+              <td><%= @user.name %></td>
             </tr>
             <tr>
               <th>introduction:</th>
-              <td><!-- ここに紹介文を表示 --></td>
+              <td><%= @user.introduction %></td>
             </tr>
           </tbody>
         </table>
@@ -29,9 +32,11 @@
           <h4>Image</h4>
           <%= f.file_field :image %>
 
-          <%= button_tag type: "submit", class: "btn btn-success", style: "background-color: lightpink; color: black; width: 150px; border:none" do %>Create Book
+          <div style="padding-top: 10px;">
+          <%= button_tag type: "submit", class: "btn btn-success", style: "background-color: lightpink; color: black; width: 120px; border:none" do %>Create Book
           <% end %>
         <% end %>
+          </div>
       </div>
     </div>
 

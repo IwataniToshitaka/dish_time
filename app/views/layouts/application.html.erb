@@ -13,7 +13,7 @@
 
 <body>
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #FF773E;">
     <div class="container">
       <%= link_to "/", class: "navbar-brand" do %>
         <li style="display: flex; justify-content: center; align-items: center;">
@@ -37,25 +37,29 @@
                 <%= link_to "Mypage", user_path(current_user.id) %>
               </li>
               <li style="margin-right: 10px; list-style-type: none;">
+                <i class="fas fa-heart"></i>
+                <%= link_to "Favorite", airticles_path %>
+              </li>
+              <li style="margin-right: 10px; list-style-type: none;">
                 <i class="fa-solid fa-sign-out-alt"></i>
                 <%= link_to "Log out", destroy_user_session_path, method: :delete %>
               </li>
               <li style="display: flex; justify-content: flex-end; margin-right: 10px;">
                 <span style="color: white; font-weight: bold;">
-                  ようこそ、<%= current_user.id %>さん！
+                  ようこそ、<%= current_user.name %>さん！
                 </span>
               </li>
             <% else %>
-              <li style="margin-right: 10px; list-style-type: none;">
+              <li style="margin-right: 10px; list-style-type: none; color: black;">
                 <i class="fa-solid fa-link"></i>About
               </li>
-              <li style="margin-right: 10px; list-style-type: none;">
+              <li style="margin-right: 10px; list-style-type: none; color: black;">
                 <i class="fa-solid fa-user-plus"></i>
-                <%= link_to "Sign up", new_user_registration_path %>
+                <%= link_to "Sign up", new_user_registration_path, style: "color: #343a40" %>
               </li>
-              <li style="margin-right: 10px; list-style-type: none;">
+              <li style="margin-right: 10px; list-style-type: none; color: black;">
                 <i class="fa-solid fa-sign-in-alt"></i>
-                <%= link_to "Log in", user_registration_path %>
+                <%= link_to "Log in", user_registration_path, style: "color: #343a40" %>
               </li>
             <% end %>
 
@@ -73,13 +77,13 @@
       </main>
 
 
-<footer class="bg-dark text-white pt-1 pb-1 d-flex flex-column justify-content-center align-items-center" style="position: fixed; left: 0; bottom: 0; width: 100%;">
-  <div style="border-bottom: 1px solid black; width: 10%; margin: 0 auto;"></div>
-    <div style="display: flex; justify-content: center; align-items: center;">
-       <ul>
-        <li style="margin-right: 10px; list-style-type: none;">プライバシーポリシー</li>
-       <ul>
-    </div>
+<footer class="bg-color text-white pt-1 pb-1 d-flex flex-column justify-content-center align-items-center" style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: #FF773E;">
+  <div style="border-bottom: 1px solid ; width: 10%; margin: 0 auto;"></div>
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <ul>
+      <li style="margin-right: 10px; list-style-type: none;">プライバシーポリシー</li>
+    </ul>
+  </div>
 </footer>
 
 
