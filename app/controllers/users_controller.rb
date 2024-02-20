@@ -3,7 +3,7 @@ before_action :is_matching_login_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
-    @airticles = @user.airticles
+    @articles = current_user.articles
     #アソシエーションを持っているモデル同士の記述
     #@other_user = User.find(params[:id])
   end

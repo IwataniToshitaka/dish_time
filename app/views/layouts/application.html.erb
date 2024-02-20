@@ -30,19 +30,19 @@
             <% if user_signed_in? %>
               <li style="margin-right: 10px; list-style-type: none;">
                 <i class="fa-solid fa-book-open"></i>
-                <%= link_to "Postall", airticles_path %>
+                <%= link_to "Postall", articles_path, style: "color: #343a40" %>
               </li>
               <li style="margin-right: 10px; list-style-type: none;">
                 <i class="fa-solid fa-home"></i>
-                <%= link_to "Mypage", user_path(current_user.id) %>
+                <%= link_to "Mypage", user_path(current_user.id), style: "color: #343a40" %>
               </li>
               <li style="margin-right: 10px; list-style-type: none;">
                 <i class="fas fa-heart"></i>
-                <%= link_to "Favorite", airticles_path %>
+                <%= link_to "Favorite", articles_path, style: "color: #343a40" %>
               </li>
               <li style="margin-right: 10px; list-style-type: none;">
                 <i class="fa-solid fa-sign-out-alt"></i>
-                <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, style: "color: #343a40" %>
               </li>
               <li style="display: flex; justify-content: flex-end; margin-right: 10px;">
                 <span style="color: white; font-weight: bold;">

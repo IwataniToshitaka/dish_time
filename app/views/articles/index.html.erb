@@ -11,22 +11,22 @@
           </tr>
         </thead>
         <tbody>
-          <% @airticles.each do |airticle| %>
+          <% @articles.each do |article| %>
             <tr>
-              <td><%= image_tag airticle.get_image, size: "50x50" %></td>
-              <td><%= link_to airticle.title, airticle_path(airticle.id), style: "color: #343a40; font-weight: bold;" %></td>
-              <td><%= airticle.user_id %></td>
+              <td><%= image_tag article.get_image, size: "50x50" %></td>
+              <td><%= link_to article.title, article_path(article.id), style: "color: #343a40; font-weight: bold;" %></td>
+              <td><%= article.user_id %></td>
               <td>
-              <% if current_user.already_liked?(airticle) %>
-                <%= link_to airticle_likes_path(airticle), method: :delete do %>
+              <% if current_user.already_liked?(article) %>
+                <%= link_to article_likes_path(article), method: :delete do %>
                   <i class="fas fa-heart"></i>
                 <% end %>
               <% else %>
-                <%= link_to airticle_likes_path(airticle), method: :post do %>
+                <%= link_to article_likes_path(article), method: :post do %>
                   <i class="fas fa-heart"></i>
                 <% end %>
               <% end %>
-              <%= airticle.likes.count %>
+              <%= article.likes.count %>
               </td>
             </tr>
           <% end %>

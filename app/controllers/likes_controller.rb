@@ -1,7 +1,7 @@
 class LikesController < ApplicationController
 
   def create
-    @like = current_user.likes.create(airticle_id: params[:airticle_id])
+    @like = current_user.likes.create(article_id: params[:article_id])
     #currentUserに基づいたいいねを作成.投稿IDにパラムスIDを格納している
     redirect_back(fallback_location: root_path)
     #いいねしたら前の画面に戻る
@@ -10,14 +10,14 @@ class LikesController < ApplicationController
 
 
   def destroy
-    @airticle = Airticle.find(params[:airticle_id])
-    @like = current_user.likes.find_by(airticle_id: @airticle.id)
+    @article = Article.find(params[:article_id])
+    @like = current_user.likes.find_by(article_id: @article.id)
     @like.destroy
     redirect_back(fallback_location: root_path)
   end
 
   def index
-    @airticles = Airticle.all
+    @articles = Article.all
     @user = current_user
   end
 

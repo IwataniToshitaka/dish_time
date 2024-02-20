@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_15_051710) do
+ActiveRecord::Schema.define(version: 2024_02_19_215818) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2024_02_15_051710) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "airticles", force: :cascade do |t|
+  create_table "articles", force: :cascade do |t|
     t.integer "user_id"
     t.text "title"
     t.text "body"
@@ -48,22 +48,16 @@ ActiveRecord::Schema.define(version: 2024_02_15_051710) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "article_genres", force: :cascade do |t|
-    t.integer "airticle_id"
-    t.integer "genre_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "airticle_id"
+    t.integer "article_id"
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "genres", force: :cascade do |t|
+    t.integer "article_id"
     t.integer "genre"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -71,17 +65,31 @@ ActiveRecord::Schema.define(version: 2024_02_15_051710) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "airticle_id"
+    t.integer "article_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
     t.string "name"
     t.string "introduction"
     t.string "profile_image"

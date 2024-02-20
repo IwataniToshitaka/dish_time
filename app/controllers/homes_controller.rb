@@ -3,7 +3,7 @@ before_action :authenticate_user!
 before_action :authenticate_user!, except:[:top, :index]
 
   def top
-    @airticles = Airticle.all
+    @articles = Article.all
   end
 
   def index
