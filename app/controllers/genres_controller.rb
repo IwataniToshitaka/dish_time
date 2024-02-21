@@ -3,16 +3,16 @@ class GenresController < ApplicationController
   before_action :ensure_genre, only: [:show, :edit, :update]
 
   def index
-    @article_genre = ArticleGenre.new
-    @article_genres = ArticleGenre.all
+    @genre = Genre.new
+    @genres = Genre.all
   end
 
   def create
-    @article_genre = ArticleGenre.new(article_genre_params)
-    if @article_genre.save
+    @genre = Genre.new(genre_params)
+    if @genre.save
       redirect_to genres_path
     else
-      @article_genres = ArticleGenre.all
+      @genres = Genre.all
       render :index
     end
   end
@@ -21,9 +21,9 @@ class GenresController < ApplicationController
   end
 
   def update
-    if @article_genre.update(article_genre_params)
-      unless @article_genre.is_active
-        @article_genre.items.update_all(is_active: false)
+    if @genre.update(genre_params)
+      unless @genre.is_active
+        @genre.items.update_all(is_active: false)
       end
       redirect_to genres_path
     else
@@ -33,11 +33,11 @@ class GenresController < ApplicationController
 
   private
 
-  def article_genre_params
-    params.require(:article_genre).permit(:name)
+  def genre_params
+    params.require(:genre).permit(:name)
   end
 
   def ensure_genre
-    @article_genre = ArticleGenre.find(params[:id])
+    @genre = Genre.find(params[:id])
   end
 end

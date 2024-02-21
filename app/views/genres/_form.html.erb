@@ -1,5 +1,5 @@
-<%= form_with model: airticle_genre, url: url do |f| %>
-  <%= render 'layouts/error_messages', resource: airticle_genre %>
+<%= form_with model: genre, url: genres_path do |f| %>
+  <%= render 'layouts/error_messages', resource: genre %>
   <%= f.label :name, "ジャンル名:" %>
   <%= f.text_field :name %>
   <%= f.radio_button :is_active, true %>
