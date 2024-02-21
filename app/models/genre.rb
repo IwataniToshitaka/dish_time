@@ -1,5 +1,6 @@
 class Genre < ApplicationRecord
-  has_many :airticles
+  include Kaminari::PageScopeMethods
+  has_many :articles
 
   scope :only_active, -> { where(is_active: true) }
 

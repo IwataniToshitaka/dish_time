@@ -5,7 +5,7 @@ class Article < ApplicationRecord
   belongs_to :user
   #1:Nのuserとの関連付け
 
-  #belongs_to :genre
+  belongs_to :genre
   #ジャンルとの可憐付け　必ずジャンル選択がマストになる
 
   has_many :likes, dependent: :destroy

@@ -4,7 +4,7 @@ class GenresController < ApplicationController
 
   def index
     @genre = Genre.new
-    @genres = Genre.all
+    @genres = Genre.page(params[:page]).per(10)
   end
 
   def create
@@ -23,7 +23,7 @@ class GenresController < ApplicationController
   def update
     if @genre.update(genre_params)
       unless @genre.is_active
-        @genre.items.update_all(is_active: false)
+        @genre.name.update_all(is_active: false)
       end
       redirect_to genres_path
     else
@@ -34,7 +34,7 @@ class GenresController < ApplicationController
   private
 
   def genre_params
-    params.require(:genre).permit(:name)
+    params.require(:genre).permit(:name, :is_active)
   end
 
   def ensure_genre
