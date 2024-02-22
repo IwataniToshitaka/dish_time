@@ -8,6 +8,7 @@
             <th scope="col">レシピ名</th>
             <th scope="col">投稿者</th>
             <th scope="col">いいね</th>
+            <th scope="col">ジャンル</th>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +29,7 @@
               <% end %>
               <%= article.likes.count %>
               </td>
+      				<td><%= link_to article.genre.name, articles_path(genre_id: article.genre_id) if article.genre %></td>
             </tr>
           <% end %>
         </tbody>

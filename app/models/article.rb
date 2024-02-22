@@ -6,7 +6,7 @@ class Article < ApplicationRecord
   #1:Nのuserとの関連付け
 
   belongs_to :genre
-  #ジャンルとの可憐付け　必ずジャンル選択がマストになる
+  #ジャンルとの関連付け　必ずジャンル選択がマストになる
 
   has_many :likes, dependent: :destroy
   #1投稿につきいいねは複数つく。

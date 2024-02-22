@@ -62,7 +62,7 @@ before_action :authenticate_user!
   private
 
   def article_params
-    params.require(:article).permit(:title, :body, :image)
+    params.require(:article).permit(:title, :body, :image, :genre_id)
   end
 
 end

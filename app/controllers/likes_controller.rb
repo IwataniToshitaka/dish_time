@@ -16,9 +16,13 @@ class LikesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def index
-    @articles = Article.all
-    @user = current_user
-  end
+def index
+  # 自分がいいねした記事のarticle_idを取得
+  liked_article_ids = current_user.likes.pluck(:article_id)
+
+  # 取得したarticle_idでArticleテーブルから該当する投稿データを取得
+  @articles = Article.where(id: liked_article_ids)
+  @user = current_user
+end
 
 end

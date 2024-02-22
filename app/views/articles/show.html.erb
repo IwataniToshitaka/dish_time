@@ -1,35 +1,52 @@
-<div class="container d-flex justify-content-center">
-
-
-  <div>
-      <%= image_tag @article.image, size: "200x200" %>
-    <% if current_user.already_liked?(@article) %>
-      <%= link_to article_likes_path(@article),method: :delete do %>
-        <i class="fas fa-heart"></i>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <%= image_tag @article.image, size: "500x500" %>
+    </div>
+    <div class="col-6">
+      <table>
+        <tr>
+          <td>料理名：</td>
+          <td class="border border-dotted"><%= @article.title %></td>
+        </tr>
+        <tr>
+          <td>レシピ：</td>
+          <td class="border border-dotted"><%= simple_format(@article.body) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <% if current_user.already_liked?(@article) %>
+        <%= link_to article_likes_path(@article), method: :delete do %>
+          <i class="fas fa-heart"></i>
+        <% end %>
+      <% else %>
+        <%= link_to article_likes_path(@article), method: :post do %>
+          <i class="fas fa-heart"></i>
+        <% end %>
       <% end %>
-    <% else %>
-      <%= link_to article_likes_path(@article),method: :post do %>
-        <i class="fas fa-heart"></i>
-      <% end %>
-    <% end %>
-    <%= @article.likes.count %>
-
-        <span>料理名：<%= @article.title %></span>
-
-        <span>説明：<%= @article.body %></span>
-
-    <div>
+      <%= @article.likes.count %><br>
+      <p>ジャンル：<%= link_to @article.genre.name, articles_path(genre_id: @article.genre_id) if @article.genre %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
       <% if current_user.id == @article.user_id %>
-        <span><%= link_to "delete", article_path(@article.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></span>
-        <span>|</span>
-        <span><%= link_to "edit", edit_article_path(@article.id) %></span>
+        <%= link_to "delete", article_path(@article.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        |
+        <%= link_to "edit", edit_article_path(@article.id) %>
       <% end %>
     </div>
-
-
-
-    <p><%= image_tag @article.image, size: "100x100" %></p>
-    <p>投稿者：<%= link_to @article.user.name, user_path(@user.id) %></p>
-    <p>投稿日：<%= @article.created_at.strftime('%Y/%m/%d') %></p>
+  </div>
+  <p>投稿日：<%= @article.created_at.strftime('%Y/%m/%d') %></p>
+  <div class="row">
+    <div class="col-12">
+      <p>
+        <%= image_tag @article.image, size: "50x50" %>
+        <%= link_to @article.user.name, user_path(@article.user.id) %>
+      </p>
+    </div>
   </div>
 </div>
