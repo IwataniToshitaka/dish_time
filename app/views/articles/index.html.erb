@@ -5,7 +5,7 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">写真</th>
-            <th scope="col">レシピ名</th>
+            <th scope="col">料理名</th>
             <th scope="col">投稿者</th>
             <th scope="col">いいね</th>
             <th scope="col">ジャンル</th>
@@ -20,16 +20,16 @@
               <td>
               <% if current_user.already_liked?(article) %>
                 <%= link_to article_likes_path(article), method: :delete do %>
-                  <i class="fas fa-heart"></i>
+                  <i class="fas fa-heart" style=" color: #ff1493; "></i>
                 <% end %>
               <% else %>
                 <%= link_to article_likes_path(article), method: :post do %>
-                  <i class="fas fa-heart"></i>
+                  <i class="fas fa-heart" style=" color: #ff1493; "></i>
                 <% end %>
               <% end %>
               <%= article.likes.count %>
               </td>
-      				<td><%= link_to article.genre.name, articles_path(genre_id: article.genre_id) if article.genre %></td>
+      				<td><%= link_to article.genre.name, articles_path(genre_id: article.genre_id), style: "color: #343a40; font-weight: bold;" if article.genre %></td>
             </tr>
           <% end %>
         </tbody>

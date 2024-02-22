@@ -20,11 +20,11 @@
     <div class="col-12">
       <% if current_user.already_liked?(@article) %>
         <%= link_to article_likes_path(@article), method: :delete do %>
-          <i class="fas fa-heart"></i>
+          <i class="fas fa-heart" style=" color: #ff1493; "></i>
         <% end %>
       <% else %>
         <%= link_to article_likes_path(@article), method: :post do %>
-          <i class="fas fa-heart"></i>
+          <i class="fas fa-heart" style=" color: #ff1493; "></i>
         <% end %>
       <% end %>
       <%= @article.likes.count %><br>

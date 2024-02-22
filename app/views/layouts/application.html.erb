@@ -11,8 +11,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-<body>
-<header>
+<body style="padding-top: 60px;">
+<header style="position: fixed; top: 0; left: 0; right: 0; z-index: 100;">
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #FF773E;">
     <div class="container">
       <%= link_to "/", class: "navbar-brand" do %>
@@ -20,6 +20,9 @@
           <span>Dish_Time</span><i class="fa-solid fa-utensils"></i>
         </li>
       <% end %>
+          <span style="color: white; font-weight: bold;">
+            Welcome　<%= current_user.name %>！
+          </span>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto" style="justify-content: space-between;">
           <div style="display: flex; justify-content: center; align-items: center;">
@@ -48,11 +51,15 @@
                 <i class="fa-solid fa-sign-out-alt"></i>
                 <%= link_to "Log out", destroy_user_session_path, method: :delete, style: "color: #343a40" %>
               </li>
-              <li style="display: flex; justify-content: flex-end; margin-right: 10px;">
-                <span style="color: white; font-weight: bold;">
-                  ようこそ、<%= current_user.name %>さん！
-                </span>
+              <li style="display: flex; justify-content: flex-end; margin-right: 10px;"></li>
+              <li>
+                <%= form_tag(search_path, method: :get) do %>
+                <%= text_field_tag "search[content]", "", :placeholder =>"name / title" %>
+                <%= select_tag "search[model]", options_for_select({ "name" => "user", "title" => "article" }) %>
+                <%= select_tag "search[method]", options_for_select({ "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "perfect" }) %>
+                <%= submit_tag '検索', class: "btn btn-primary" %>
               </li>
+                <% end %>
             <% else %>
               <li style="margin-right: 10px; list-style-type: none; color: black;">
                 <i class="fa-solid fa-link"></i>About
@@ -65,8 +72,10 @@
                 <i class="fa-solid fa-sign-in-alt"></i>
                 <%= link_to "Log in", user_registration_path, style: "color: #343a40" %>
               </li>
+              <li>
+                <%= submit_tag '検索', class: "btn btn-primary" %>
+              </li>
             <% end %>
-
           </div>
         </ul>
       </div>
@@ -75,21 +84,13 @@
 </header>
 </body>
 
-  <div style="border-bottom: 1px solid black;"></div>
-      <main class="mb-auto d-flex justify-content-center align-items-center">
-      <%= yield %>
+      <main style="margin-top: 60px;">
+        <%= yield %>
       </main>
 
 
-<footer class="bg-color text-white pt-1 pb-1 d-flex flex-column justify-content-center align-items-center" style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: #FF773E;">
-  <div style="border-bottom: 1px solid ; width: 10%; margin: 0 auto;"></div>
-  <div style="display: flex; justify-content: center; align-items: center;">
-    <ul>
-      <li style="margin-right: 10px; list-style-type: none;">プライバシーポリシー</li>
-    </ul>
-  </div>
-</footer>
-
-
-  </body>
+    <footer class="bg-color text-white pt-1 pb-1 d-flex flex-column justify-content-center align-items-center" style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: #FF773E; height: 20px;">
+      <div style="border-bottom:width: 10%; margin: 0 auto;"></div>
+      <div style="display: flex; justify-content: center; align-items: center;"></div>
+    </footer>
 </html>
