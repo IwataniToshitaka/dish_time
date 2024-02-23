@@ -7,15 +7,32 @@
       			<th>写真</th>
 	      		<th>料理名</th>
 	 　　　　　<th>投稿者</th>
+	 　　　　　<th>いいね</th>
 	      		<th>ジャンル</th>
 	      	</tr>
 	      </thead>
         	<tbody>
-  	      	<% articles.each do |article| %>
+  	      	<% @articles.each do |article| %>
 		        	<tr>
 			        	<td><%= image_tag article.get_image, size: "50x50" %></td>
 			        	<td><%= link_to article.title, article_path(article), style: "color: #343a40; font-weight: bold;" %></td>
 			        	<td><%= link_to article.user.name, user_path(article), style: "color: #343a40; font-weight: bold;" %></td>
+			        	<td>
+			        		<% if current_user.present? %>
+              		  <% if current_user.already_liked?(article) %>
+             			  <%= link_to article_likes_path(article), method: :delete do %>
+             		  	<i class="fas fa-heart" style="color: #ff1493;"></i>
+                		<% end %>
+             			<% else %>
+               			<%= link_to article_likes_path(article), method: :post do %>
+               			<i class="fas fa-heart" style="color: #ff1493;"></i>
+                	<% end %>
+              		<% end %>
+             			<% else %>
+              			<i class="fas fa-heart" style="color: #ff1493;"></i>
+            		  <% end %>
+          			<%= article.likes.count %>
+            	</td>
 			        	<td><%= link_to article.genre.name, articles_path(genre_id: article.genre_id), style: "color: #343a40; font-weight: bold;" %></td>
 		        	</tr>
 		        <% end %>

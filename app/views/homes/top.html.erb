@@ -5,7 +5,16 @@
         <h1 style="font-size: 280px;">
           <i class="fa-solid fa-utensils"></i>
         </h1>
-        <h2>dIsh_tIme</h2>
+
+        <h3>What's shall dish today ?</h3>
+          <div>
+            <%= form_tag(search_path, method: :get) do %>
+            <%= text_field_tag "search[content]", "", :placeholder =>"name / title" %>
+            <%= select_tag "search[model]", options_for_select({ "name" => "user", "title" => "article" }) %>
+            <%= select_tag "search[method]", options_for_select({ "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "perfect" }) %>
+            <%= submit_tag '検索', class: "btn btn-primary" %>
+          </div>
+            <% end %>
       </div>
     </div>
   </div>

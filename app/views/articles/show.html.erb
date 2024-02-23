@@ -31,6 +31,22 @@
       <p>ジャンル：<%= link_to @article.genre.name, articles_path(genre_id: @article.genre_id) if @article.genre %></p>
     </div>
   </div>
+
+  <div>
+    <p>コメント件数：<%= @article.comments.count %></p>
+    <% @article.comments.each do |comment| %>
+      <%= comment.user.name %>
+      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form_with(model: @comment, url: article_comments_path(@article)) do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメント" %>
+      <%= f.submit "コメント" %>
+    <% end %>
+  </div>
+
   <div class="row">
     <div class="col-12">
       <% if current_user.id == @article.user_id %>

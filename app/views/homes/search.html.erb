@@ -1,12 +1,22 @@
+<div class="container d-flex justify-content-start" style="position: absolute; top: 80px; right: 250px;">
+  <h3>
+    <i class="fa-solid fa-magnifying-glass"></i>検索結果
+  </h3>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-10 mx-auto">
 <section class="inner">
-  <h2 class="section-ttl">検索結果</h2>
-  <% if @result.first %> <!-- @result.exists?と同義 -->
-  	<% if @model == 'user' %>
-  		<%= render 'articles/index', users: @result %>
-  	<% else %>
-  		<%= render 'articles/index', articles: @result %>
-  	<% end %>
+  <% if @result %>
+    <% if @model == 'user' %>
+      <%= render 'articles/index', users: @result %>
+    <% else %>
+      <%= render 'articles/index', articles: @result %>
+    <% end %>
   <% else %>
-  	<h3>見つかりませんでした。検索条件を変更して再度お試しください。</h3>
+    <p>検索結果がありません。</p>
   <% end %>
 </section>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,22 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-10 mx-auto">
+      <div class="row">
+        <div class="container d-flex justify-content-start">
+          <h3>
+        <i class="fas fa-book-open"></i>投稿一覧
+          </h3>
+        </div>
+        <div class="col text-right">
+            <%= form_tag(search_path, method: :get) do %>
+            <%= text_field_tag "search[content]", "", :placeholder =>"name / title" %>
+            <%= select_tag "search[model]", options_for_select({ "name" => "user", "title" => "article" }) %>
+            <%= select_tag "search[method]", options_for_select({ "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "perfect" }) %>
+            <%= submit_tag '検索', class: "btn btn-primary" %>
+            <% end %>
+        </div>
+      </div>
+
       <table class="table table-hover">
         <thead class="thead-dark">
           <tr>
@@ -12,28 +28,35 @@
           </tr>
         </thead>
         <tbody>
-          <% @articles.each do |article| %>
+            <% @articles.each do |article| %>
             <tr>
               <td><%= image_tag article.get_image, size: "50x50" %></td>
               <td><%= link_to article.title, article_path(article.id), style: "color: #343a40; font-weight: bold;" %></td>
               <td><%= article.user_id %></td>
-              <td>
-              <% if current_user.already_liked?(article) %>
+            <td>
+              <% if current_user.present? %>
+                <% if current_user.already_liked?(article) %>
                 <%= link_to article_likes_path(article), method: :delete do %>
-                  <i class="fas fa-heart" style=" color: #ff1493; "></i>
+                <i class="fas fa-heart" style="color: #ff1493;"></i>
                 <% end %>
               <% else %>
                 <%= link_to article_likes_path(article), method: :post do %>
-                  <i class="fas fa-heart" style=" color: #ff1493; "></i>
+                <i class="fas fa-heart" style="color: #ff1493;"></i>
                 <% end %>
               <% end %>
-              <%= article.likes.count %>
-              </td>
-      				<td><%= link_to article.genre.name, articles_path(genre_id: article.genre_id), style: "color: #343a40; font-weight: bold;" if article.genre %></td>
+              <% else %>
+              <i class="fas fa-heart" style="color: #ff1493;"></i>
+              <% end %>
+          <%= article.likes.count %>
+            </td>
+            <td><%= link_to article.genre.name, articles_path(genre_id: article.genre_id), style: "color: #343a40; font-weight: bold;" if article.genre %></td>
             </tr>
           <% end %>
-        </tbody>
+      </tbody>
+            <%= paginate @articles %>
       </table>
     </div>
   </div>
 </div>
+
+

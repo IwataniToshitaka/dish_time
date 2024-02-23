@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show, :index, :edit, :update]
   resources :articles, only: [:new, :create, :index, :show, :update, :edit, :destroy]do
     resource :likes, only: [:index, :create, :destroy]
+    resource :comments, only: [:create]
   end
   resources :likes, only: [:index]
   resources :genres, only: [:index, :create, :edit, :update]

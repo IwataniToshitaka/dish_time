@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-  before_action :authenticate_user!, except: [:top, :index]
+  before_action :authenticate_user!, except: [:top, :index, :search]
 
   def top
     @articles = Article.all
@@ -9,7 +9,8 @@ class HomesController < ApplicationController
     @model = params['search']['model']
     @content = params['search']['content']
     @method = params['search']['method']
-    @result = search_for(@model, @content, @method)
+    @articles = search_for(@model, @content, @method)  # @articlesに値を設定する
+    @result = @articles.first
   end
 
   def index

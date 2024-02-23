@@ -7,7 +7,8 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
    #userと投稿の1:N userが消えたら投稿もすべて消える
   has_many :likes, dependent: :destroy
-   #1投稿につきいいねは複数つく。
+   #1投稿につきいいねは複数。
+  has_many :comments, dependent: :destroy
 
   def already_liked?(article)
     self.likes.exists?(article_id: article.id)

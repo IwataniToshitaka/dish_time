@@ -20,9 +20,6 @@
           <span>Dish_Time</span><i class="fa-solid fa-utensils"></i>
         </li>
       <% end %>
-          <span style="color: white; font-weight: bold;">
-            Welcome　<%= current_user.name %>！
-          </span>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto" style="justify-content: space-between;">
           <div style="display: flex; justify-content: center; align-items: center;">
@@ -40,7 +37,7 @@
                 <%= link_to "Mypage", user_path(current_user.id), style: "color: #343a40" %>
               </li>
               <li style="margin-right: 10px; list-style-type: none;">
-                <i class="fa-solid fa-home"></i>
+                <i class="fa-solid fa-pen"></i>
                 <%= link_to "NewPost", new_article_path(current_user.id), style: "color: #343a40" %>
               </li>
               <li style="margin-right: 10px; list-style-type: none;">
@@ -48,21 +45,23 @@
                 <%= link_to "Favorite", likes_path, style: "color: #343a40" %>
               </li>
               <li style="margin-right: 10px; list-style-type: none;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <%= link_to "Search", root_path, style: "color: #343a40" %>
+              </li>
+              <li style="margin-right: 10px; list-style-type: none;">
                 <i class="fa-solid fa-sign-out-alt"></i>
                 <%= link_to "Log out", destroy_user_session_path, method: :delete, style: "color: #343a40" %>
               </li>
               <li style="display: flex; justify-content: flex-end; margin-right: 10px;"></li>
-              <li>
-                <%= form_tag(search_path, method: :get) do %>
-                <%= text_field_tag "search[content]", "", :placeholder =>"name / title" %>
-                <%= select_tag "search[model]", options_for_select({ "name" => "user", "title" => "article" }) %>
-                <%= select_tag "search[method]", options_for_select({ "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "perfect" }) %>
-                <%= submit_tag '検索', class: "btn btn-primary" %>
+              <li style="color: white; font-weight: bold;">
+                Welcome　<%= current_user.name %>！
               </li>
-                <% end %>
+
+
             <% else %>
-              <li style="margin-right: 10px; list-style-type: none; color: black;">
-                <i class="fa-solid fa-link"></i>About
+              <li style="margin-right: 10px; list-style-type: none;">
+                <i class="fa-solid fa-book-open"></i>
+                <%= link_to "Post all", articles_path, style: "color: #343a40" %>
               </li>
               <li style="margin-right: 10px; list-style-type: none; color: black;">
                 <i class="fa-solid fa-user-plus"></i>
@@ -71,9 +70,6 @@
               <li style="margin-right: 10px; list-style-type: none; color: black;">
                 <i class="fa-solid fa-sign-in-alt"></i>
                 <%= link_to "Log in", user_registration_path, style: "color: #343a40" %>
-              </li>
-              <li>
-                <%= submit_tag '検索', class: "btn btn-primary" %>
               </li>
             <% end %>
           </div>
