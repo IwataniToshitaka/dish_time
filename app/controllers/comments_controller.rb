@@ -15,6 +15,14 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
+  def destroy
+  @article = Article.find(params[:id]) # 記事を取得
+  @comment = Comment.find(params[:comment_id])
+  @comment.destroy
+  redirect_to article_path(@article) # 記事の詳細ページにリダイレクト
+  end
+
+
     private
 
   def comment_params

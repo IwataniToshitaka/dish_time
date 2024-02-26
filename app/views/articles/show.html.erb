@@ -4,15 +4,18 @@
       <%= image_tag @article.image, size: "500x500" %>
     </div>
     <div class="col-6">
-      <table>
-        <tr>
-          <td>料理名：</td>
-          <td class="border border-dotted"><%= @article.title %></td>
-        </tr>
-        <tr>
-          <td>レシピ：</td>
-          <td class="border border-dotted"><%= simple_format(@article.body) %></td>
-        </tr>
+      <table style="width: 100%;">
+      <tr>
+        <td style="font-size: 24px;">料理名</td>
+        <td style="font-size: 24px;"><%= @article.title %></td>
+      </tr>
+      <tr>
+        <td style="line-height: 1.5;">&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="font-size: 24px; display: flex; align-items: center;">レシピ</td>
+        <td style="font-size: 24px;"><%= simple_format(@article.body) %></td>
+      </tr>
       </table>
     </div>
   </div>
@@ -28,41 +31,50 @@
         <% end %>
       <% end %>
       <%= @article.likes.count %><br>
-      <p>ジャンル：<%= link_to @article.genre.name, articles_path(genre_id: @article.genre_id) if @article.genre %></p>
+      <p>投稿日：<%= @article.created_at.strftime('%Y/%m/%d') %>
+          ジャンル：<%= link_to @article.genre.name, articles_path(genre_id: @article.genre_id), style: "color: #343a40" if @article.genre %></p>
     </div>
+        <div class="row">
+        <div class="col-12">
+            <%= image_tag @article.image, size: "50x50" %>
+            <%= link_to @article.user.name, user_path(@article.user.id) %>
+        </div>
+        
+          <div class="row">
+            <div class="col-12">
+              <% if current_user.id == @article.user_id %>
+                <%= link_to "delete", article_path(@article.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+              |
+                 <%= link_to "edit", edit_article_path(@article.id) %>
+              <% end %>
+            </div>
+        </div>
+        
+        
+        </div>
   </div>
 
   <div>
-    <p>コメント件数：<%= @article.comments.count %></p>
-    <% @article.comments.each do |comment| %>
-      <%= comment.user.name %>
-      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-    <% end %>
+      <% @article.comments.each do |comment| %>
+  <div class ="comment-User">
+      User：<%= comment.user.name %>
+  </div>
+  
+  <div class ="comment-body">
+      Comment：<%= comment.comment %>
+  </div>
+      <%= comment.created_at.strftime('%Y/%m/%d') %>
+
+        <% if current_user.id == comment.user_id %>
+          <%= link_to "削除", article_comments_path(@article, comment), method: :delete, remote: true, data: { confirm: "本当に削除しますか？" } %>
+        <% end %>
+      <% end %>
   </div>
 
   <div>
     <%= form_with(model: @comment, url: article_comments_path(@article)) do |f| %>
-      <%= f.text_area :comment, rows: '5', placeholder: "コメント" %>
-      <%= f.submit "コメント" %>
+      <%= f.text_area :comment, rows: '2', placeholder: "コメント" %>
+      <%= f.submit "コメント", class: "btn btn-success" %>
     <% end %>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <% if current_user.id == @article.user_id %>
-        <%= link_to "delete", article_path(@article.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-        |
-        <%= link_to "edit", edit_article_path(@article.id) %>
-      <% end %>
-    </div>
-  </div>
-  <p>投稿日：<%= @article.created_at.strftime('%Y/%m/%d') %></p>
-  <div class="row">
-    <div class="col-12">
-      <p>
-        <%= image_tag @article.image, size: "50x50" %>
-        <%= link_to @article.user.name, user_path(@article.user.id) %>
-      </p>
-    </div>
   </div>
 </div>
