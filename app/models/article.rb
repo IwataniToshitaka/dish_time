@@ -11,7 +11,7 @@ class Article < ApplicationRecord
   has_many :likes, dependent: :destroy
   #1投稿につきいいねは複数つく。
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
   #1投稿につきコメントは複数。投稿が消えたらコメントも消える
 
   validates :title, presence: true

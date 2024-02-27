@@ -16,10 +16,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-  @article = Article.find(params[:id]) # 記事を取得
-  @comment = Comment.find(params[:comment_id])
-  @comment.destroy
-  redirect_to article_path(@article) # 記事の詳細ページにリダイレクト
+    @comment = Comment.find(params[:id],article_id: params[:article_id])
+    comment.destroy
+    redirect_to article_path(@article) # 記事の詳細ページにリダイレクト
   end
 
 

@@ -5,76 +5,69 @@
     </div>
     <div class="col-6">
       <table style="width: 100%;">
-      <tr>
-        <td style="font-size: 24px;">料理名</td>
-        <td style="font-size: 24px;"><%= @article.title %></td>
-      </tr>
-      <tr>
-        <td style="line-height: 1.5;">&nbsp;</td>
-      </tr>
-      <tr>
-        <td style="font-size: 24px; display: flex; align-items: center;">レシピ</td>
-        <td style="font-size: 24px;"><%= simple_format(@article.body) %></td>
-      </tr>
+        <tr>
+          <td style="font-size: 24px;">料理名</td>
+          <td style="font-size: 24px;"><%= @article.title %></td>
+        </tr>
+        <tr>
+          <td style="line-height: 1.5;">&nbsp;</td>
+        </tr>
+        <tr>
+          <td style="font-size: 24px; display: flex; align-items: center;">レシピ</td>
+          <td style="font-size: 24px;"><%= simple_format(@article.body) %></td>
+        </tr>
       </table>
     </div>
   </div>
+
   <div class="row">
     <div class="col-12">
       <% if current_user.already_liked?(@article) %>
         <%= link_to article_likes_path(@article), method: :delete do %>
-          <i class="fas fa-heart" style=" color: #ff1493; "></i>
+          <i class="fas fa-heart" style="color: #ff1493;"></i>
         <% end %>
       <% else %>
         <%= link_to article_likes_path(@article), method: :post do %>
-          <i class="fas fa-heart" style=" color: #ff1493; "></i>
+          <i class="fas fa-heart" style="color: #ff1493;"></i>
         <% end %>
       <% end %>
       <%= @article.likes.count %><br>
-      <p>投稿日：<%= @article.created_at.strftime('%Y/%m/%d') %>
-          ジャンル：<%= link_to @article.genre.name, articles_path(genre_id: @article.genre_id), style: "color: #343a40" if @article.genre %></p>
-    </div>
-        <div class="row">
-        <div class="col-12">
-            <%= image_tag @article.image, size: "50x50" %>
-            <%= link_to @article.user.name, user_path(@article.user.id) %>
-        </div>
-        
-          <div class="row">
-            <div class="col-12">
-              <% if current_user.id == @article.user_id %>
-                <%= link_to "delete", article_path(@article.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-              |
-                 <%= link_to "edit", edit_article_path(@article.id) %>
-              <% end %>
-            </div>
-        </div>
-        
-        
-        </div>
-  </div>
-
-  <div>
-      <% @article.comments.each do |comment| %>
-  <div class ="comment-User">
-      User：<%= comment.user.name %>
-  </div>
-  
-  <div class ="comment-body">
-      Comment：<%= comment.comment %>
-  </div>
-      <%= comment.created_at.strftime('%Y/%m/%d') %>
-
-        <% if current_user.id == comment.user_id %>
-          <%= link_to "削除", article_comments_path(@article, comment), method: :delete, remote: true, data: { confirm: "本当に削除しますか？" } %>
+      <p>
+        投稿者：<%= link_to @article.user.name, user_path(@article.user.id) %>
+        ジャンル：<%= link_to @article.genre.name, articles_path(genre_id: @article.genre_id), style: "color: #343a40;" if @article.genre %><br>
+        投稿日：<%= @article.created_at.strftime('%Y/%m/%d') %>
+        <% if current_user.id == @article.user_id %>
+          <%= link_to "delete", article_path(@article.id), method: :delete, class: "btn btn-sm btn-light btn-delete", "data-confirm" => "本当に削除しますか？" %>
+          |
+          <%= link_to "edit", edit_article_path(@article.id), class: "btn btn-sm btn-light btn-edit" %>
         <% end %>
-      <% end %>
+      </p>
+    </div>
   </div>
 
-  <div>
+  <div class="comment-form">
     <%= form_with(model: @comment, url: article_comments_path(@article)) do |f| %>
-      <%= f.text_area :comment, rows: '2', placeholder: "コメント" %>
+      <%= f.text_area :comment, rows: '1', placeholder: "コメント" %>
       <%= f.submit "コメント", class: "btn btn-success" %>
     <% end %>
   </div>
+
+
+  <% @article.comments.each do |comment| %>
+    <div class="comment-body">
+      Comment：<%= comment.comment %>
+    </div>
+    <div class="comment-User">
+      User：<%= comment.user.name %>
+    </div>
+    <div class="comment-date">
+      <%= comment.created_at.strftime('%Y/%m/%d') %>
+      <% if current_user.id == comment.user_id %>
+        <%= link_to "削除", article_comments_path(@article, comment), method: :delete, remote: true, data: { confirm: "本当に削除しますか？" } %>
+      <% end %>
+    </div>
+  <% end %>
+
+
+
 </div>
