@@ -16,9 +16,16 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id],article_id: params[:article_id])
+    @article = Article.find(params[:article_id])
+      comment = @article.comments.find(params[:id])
+      unless comment.user == current_user
+      flash[:danger] = "他のユーザーのコメントは削除できません"
+      redirect_to article_path(@article)
+       return
+      end
     comment.destroy
-    redirect_to article_path(@article) # 記事の詳細ページにリダイレクト
+    flash[:success] = "コメントを削除しました"
+    redirect_to article_path(@article)
   end
 
 
