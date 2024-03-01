@@ -1,33 +1,39 @@
 <div class="container text-center">
-  <div class="mb-3">
-    <h3><i class="fas fa-book-open"></i>ジャンル新規登録</h3>
+    <div class="mb-3">
+      <% if notice %>
+    <div class="notice">
+      <%= notice %>
+    </div>
+      <% end %>
+    <!--アクション成功時のコメント表示-->
+
+    <h3><i class="fa-regular fa-chess-king"></i>ジャンル新規登録</h3>
     <%= render 'form', genre: @genre, url: genres_path, submit: '登録' %>
   </div>
 
   <div class="mt-5">
-    <h2>ジャンル一覧</h2>
+    <h2>- ジャンル一覧 -</h2>
     <div class="genre-header">
     <div class="d-flex justify-content-center">
     <table class="genre_info has_border">
       <tbody>
         <% @genres.each_with_index do |genre, index| %>
           <% if index % 10 == 0 %>
-            <% if index != 0 %></tr><% end %> <!-- 前の行の終了 -->
-            <tr> <!-- 新しい行の開始 -->
+            <% if index != 0 %></tr><% end %>
+            <tr>
           <% end %>
           <td>
             <div>
-              <p><%= link_to genre.name, genres_path(genre_id: genre.id), class: "underline" %></p>
+              <p><%= genre.name %></p>
               <% if genre.is_active? %>
-                <p><span class="text-active">有効</span></p>
+                <strong><%= link_to "有効", edit_genre_path(genre), class: "btn btn-light" %></strong>
               <% else %>
-                <p><span class="text-invalid">無効</span></p>
+                <span class="text-invalid"><%= link_to "無効", edit_genre_path(genre), class: "btn btn-light" %></span>
               <% end %>
-              <p><%= link_to "編集", edit_genre_path(genre), class: "btn btn-success" %></p>
             </div>
           </td>
           <% if index % 10 == 9 || index == @genres.size - 1 %>
-            </tr> <!-- 行の終了 -->
+            </tr>
           <% end %>
         <% end %>
       </tbody>

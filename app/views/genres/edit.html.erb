@@ -1,4 +1,5 @@
 <section class="inner">
 	<h2 class="section-ttl">ジャンル新規登録</h2>
   <%= render 'form', genre: @genre, url: genre_path(@genre), submit: '更新' %>
+  <%= link_to "削除", genre_path, method: :delete, confirmation: "本当に削除してもよろしいですか？" %>
 </section>

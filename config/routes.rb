@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resource :comments, only: [:new, :create, :edit, :show, :destroy]
   end
   resources :likes, only: [:index]
-  resources :genres, only: [:index, :create, :edit, :update]
+  resources :genres, only: [:index, :create, :edit, :update, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end

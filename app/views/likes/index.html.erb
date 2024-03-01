@@ -2,6 +2,9 @@
   <div class="row">
     <div class="col-10 mx-auto">
       <table class="table table-hover">
+        <h3>
+          <i class="fas fa-heart"></i>お気に入り一覧
+        </h3>
         <thead class="thead-dark">
           <tr>
             <th scope="col">写真</th>
@@ -15,7 +18,7 @@
             <tr>
               <td><%= image_tag article.get_image, size: "50x50" %></td>
               <td><%= link_to article.title, article_path(article.id), style: "color: #343a40; font-weight: bold;" %></td>
-              <td><%= article.user_id %></td>
+              <td><%= link_to article.user.name, user_path(article.user), style: "color: #343a40" %></td>
               <td>
               <% if current_user.already_liked?(article) %>
                 <%= link_to article_likes_path(article), method: :delete do %>

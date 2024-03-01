@@ -7,6 +7,7 @@
         <i class="fas fa-book-open"></i>投稿一覧
           </h3>
         </div>
+        
         <div class="col text-right">
             <%= form_tag(search_path, method: :get) do %>
             <%= text_field_tag "search[content]", "", :placeholder =>"name / title" %>
