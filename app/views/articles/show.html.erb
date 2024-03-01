@@ -33,8 +33,8 @@
       <% end %>
       <%= @article.likes.count %><br>
       <p>
-        投稿者：<%= link_to @article.user.name, user_path(@article.user.id) %>
-        ジャンル：<%= link_to @article.genre.name, articles_path(genre_id: @article.genre_id), style: "color: #343a40;" if @article.genre %><br>
+        投稿者：<%= link_to @article.user.name, user_path(@article.user.id), style: "color: #343a40; font-weight: bold;" %>
+        ジャンル：<%= @article.genre.name %><br>
         投稿日：<%= @article.created_at.strftime('%Y/%m/%d') %>
         <% if current_user.id == @article.user_id %>
           <%= link_to "delete", article_path(@article.id), method: :delete, class: "btn btn-sm btn-light btn-delete", "data-confirm" => "本当に削除しますか？" %>

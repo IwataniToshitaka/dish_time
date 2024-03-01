@@ -7,16 +7,13 @@ class Article < ApplicationRecord
 
   belongs_to :genre
   #ジャンルとの関連付け　必ずジャンル選択がマストになる
-
   has_many :likes, dependent: :destroy
   #1投稿につきいいねは複数つく。
-
   has_many :comments, dependent: :destroy
   #1投稿につきコメントは複数。投稿が消えたらコメントも消える
 
   validates :title, presence: true
   validates :body, presence: true
-  validates :image, presence: true
   #バリデーションS
   #タイトル、本文、画像が空欄の場合データ保存されない
 
