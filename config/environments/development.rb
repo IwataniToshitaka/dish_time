@@ -57,7 +57,7 @@ Rails.application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = false
-  # true -> 
+  # true ->
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
@@ -74,5 +74,5 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-  config.hosts << "c994ff6d1bf3415bbf91c541720a28f4.vfs.cloud9.ap-northeast-1.amazonaws.com"
+  config.hosts << "3a4354cc12894d46be91a9e81ed46545.vfs.cloud9.ap-northeast-1.amazonaws.com"
 end
